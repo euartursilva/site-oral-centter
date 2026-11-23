@@ -41,23 +41,23 @@
   .barra nav{display:flex;gap:.6rem;align-items:center}
   .pill{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.7rem 1.15rem;border-radius:999px;transition:transform .2s,background .3s,color .3s}
   .pill:hover{transform:translateY(-2px)}
-  .pill svg{width:18px;height:18px;fill:currentColor}
+  .pill svg{width:18px;height:18px}
   .p-azul{background:var(--azul);color:#fff}
   .p-sol{background:var(--sol);color:var(--noite)}
   .p-linha{box-shadow:inset 0 0 0 1.5px currentColor}
-  .barra .p-linha{display:inline-flex}
+  
   .barra{color:var(--azul)}
   .barra.no-azul{color:#fff;--bg-marca:#0066CB}
   .barra.no-azul .p-azul{background:#fff;color:var(--azul)}
   .barra.solida{--bg-marca:#fff;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);color:var(--azul);box-shadow:0 1px 0 #DCE6F1}
   .barra.solida .p-azul{background:var(--azul);color:#fff}
-  @media (max-width:640px){.barra .p-linha{display:none}}
+  @media (max-width:640px){.barra .redondo{width:38px;height:38px}}
 
   /* ---------- Abertura: o sorriso se forma com a rolagem ---------- */
   .palco{height:300vh;position:relative}
   .cena{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--bg,#fff);display:grid;place-items:center}
   .cena svg.boca{position:absolute;inset:0;width:100%;height:100%;transform-origin:50% 50%}
-  .cena svg path,.cena svg circle{fill:none;stroke-linecap:round}
+  .cena svg.boca path,.cena svg.boca circle{fill:none;stroke-linecap:round}
   .frase{position:absolute;left:0;right:0;text-align:center;padding:0 1.25rem;pointer-events:none}
   .frase.f1{top:clamp(6rem,17vh,10rem)}
   .frase.f1 h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,7vw,6rem);line-height:.98;letter-spacing:-.04em;color:var(--azul)}
@@ -134,6 +134,7 @@
   .info small{display:block;color:#8FA9C6;font-size:.88rem;margin-bottom:.2rem}
   .info p{font-size:1.1rem;color:#fff}
   .info a{border-bottom:1.5px solid var(--sol)}
+  .info a.canal{border-bottom:0}.info a.canal:hover{color:var(--sol)}
   .selo{display:inline-flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.08);border-radius:999px;padding:.55rem 1rem;font-size:.95rem;color:#fff;width:max-content;max-width:100%}
   .selo i{display:flex;gap:2px}.selo i b{width:5px;height:16px;border-radius:3px}
   .mapa{border-radius:28px 28px 0 0;overflow:hidden;min-height:420px;background:#0C3866}
@@ -149,6 +150,77 @@
   .js .rv.on{opacity:1;transform:none}
   .reduz .rv{opacity:1!important;transform:none!important}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.dica i{animation:none}}
+
+  /* Ícones */
+  .ic{width:18px;height:18px;flex:none;fill:currentColor}
+  .ic.ig{fill:none;stroke:currentColor;stroke-width:2}
+  .ic.ig .pt{fill:currentColor;stroke:none}
+  .redondo{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;box-shadow:inset 0 0 0 1.5px currentColor;transition:transform .25s,background .3s,color .3s}
+  .redondo:hover{transform:translateY(-2px) rotate(-6deg)}
+  .redondo .ic{width:19px;height:19px}
+  .barra.solida .redondo:hover,.barra:not(.no-azul) .redondo:hover{background:var(--azul);color:#fff}
+  .barra.no-azul:not(.solida) .redondo:hover{background:#fff;color:var(--azul)}
+  .info .canal{display:inline-flex;align-items:center;gap:.6rem}
+  .info .canal .ic{width:22px;height:22px;color:var(--sol)}
+  .rodape .redes{display:flex;gap:.8rem;align-items:center}
+  .rodape .redes a{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);transition:background .3s}
+  .rodape .redes a:hover{background:var(--azul)}
+
+  /* Botões flutuantes */
+  .flutua{position:fixed;right:1.1rem;bottom:1.1rem;z-index:30;display:flex;flex-direction:column;gap:.7rem;transform:translateY(140%);opacity:0;transition:transform .6s cubic-bezier(.3,1.4,.5,1),opacity .4s}
+  .flutua.ver{transform:none;opacity:1}
+  .flutua a{position:relative;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;color:#fff;box-shadow:0 10px 26px rgba(6,42,82,.28);transition:transform .25s}
+  .flutua a:hover{transform:scale(1.08)}
+  .flutua a .ic{width:26px;height:26px}
+  .flutua .f-wa{background:#25D366}
+  .flutua .f-ig{background:radial-gradient(circle at 30% 110%,#FFD23F 0%,#F56040 35%,#C13584 65%,#5851DB 100%)}
+  .flutua .f-wa::after{content:"";position:absolute;inset:0;border-radius:50%;box-shadow:0 0 0 0 rgba(37,211,102,.55);animation:pulso 2.4s 1s infinite}
+  @keyframes pulso{70%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .flutua .dica-wa{position:absolute;right:68px;top:50%;transform:translateY(-50%) translateX(8px);white-space:nowrap;background:#fff;color:var(--texto);font-size:.88rem;font-weight:600;padding:.45rem .8rem;border-radius:12px;box-shadow:0 6px 18px rgba(6,42,82,.15);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+  .flutua a:hover .dica-wa,.flutua a:focus-visible .dica-wa{opacity:1;transform:translateY(-50%)}
+
+  /* Títulos sobem palavra por palavra */
+  .js h2.pal .pw{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.06em}
+  .js h2.pal .pw>span{display:inline-block;transform:translateY(105%);transition:transform .8s cubic-bezier(.2,.75,.15,1);transition-delay:calc(var(--i)*70ms)}
+  .js h2.pal.on .pw>span{transform:none}
+
+  /* Sorrisinhos aparecem um a um */
+  .js .sorrisos svg{transform:scale(0) rotate(-40deg);transition:transform .55s cubic-bezier(.3,1.6,.5,1);transition-delay:calc(var(--i)*110ms + .2s)}
+  .js .nota.on .sorrisos svg{transform:none}
+
+  /* Balões: "digitando…" antes da fala */
+  .fala .digitando{display:none}
+  .js .fala:not(.lida) p,.js .fala:not(.lida) footer{opacity:0}
+  .js .fala:not(.lida) .digitando{display:flex;gap:6px;padding:.4rem 0}
+  .fala .digitando i{width:9px;height:9px;border-radius:50%;background:currentColor;opacity:.35;animation:pula 1s infinite}
+  .fala .digitando i:nth-child(2){animation-delay:.15s}.fala .digitando i:nth-child(3){animation-delay:.3s}
+  .fala:not(.b) .digitando{color:var(--azul)}.fala.b .digitando{color:#fff}
+  @keyframes pula{0%,60%,100%{transform:none;opacity:.35}30%{transform:translateY(-6px);opacity:1}}
+  .fala.lida p,.fala.lida footer{animation:surge .6s ease both}
+  .fala.lida footer{animation-delay:.15s}
+  @keyframes surge{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .js .fala.rv{transform:translateY(30px) scale(.96);transform-origin:bottom left}
+  .js .fala.b.rv{transform-origin:bottom right}
+  .js .fala.rv.on{transform:none}
+
+  /* Passos: número pula, linha se desenha */
+  .passos li{border-top:0;position:relative}
+  .passos li::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--azul);transform-origin:left;transform:scaleX(var(--k,1));transition:transform 1s cubic-bezier(.7,0,.2,1);transition-delay:var(--d,0s)}
+  .js .passos li:not(.on){--k:0}
+  .js .passos li::before{transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1);transition-delay:calc(var(--d,0s) + .35s)}
+  .js .passos li.on::before{transform:none}
+
+  /* Logo completo dá um pulinho */
+  .cena svg.boca.pulo #sorriso{animation:sorri .7s cubic-bezier(.3,1.6,.5,1)}
+  @keyframes sorri{40%{transform:translateY(14px) scaleX(1.05)}}
+  #sorriso{transform-box:fill-box;transform-origin:center}
+
+  @media (prefers-reduced-motion:reduce){
+    .flutua .f-wa::after,.fala .digitando i{animation:none}
+    .js h2.pal .pw>span,.js .sorrisos svg,.js .passos li::before{transform:none!important}
+    .js .passos li{--k:1}
+    .js .fala p,.js .fala footer{opacity:1!important}.js .fala .digitando{display:none!important}
+  }
 </style>
 </head>
 <body>
@@ -164,7 +236,8 @@
       Oral Centter
     </a>
     <nav aria-label="Principal">
-      <a class="pill p-linha" href="https://wa.me/5573999062002" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="redondo" href="https://www.instagram.com/oralcentter.tx/" target="_blank" rel="noopener" aria-label="Instagram da Oral Centter"><svg class="ic ig" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle class="pt" cx="17.4" cy="6.6" r="1.1"/></svg></a>
+      <a class="redondo" href="https://wa.me/5573999062002" target="_blank" rel="noopener" aria-label="WhatsApp da Oral Centter"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg></a>
       <a class="pill p-azul" href="https://agenda.link/1112" target="_blank" rel="noopener">Agendar</a>
     </nav>
   </div>
@@ -188,10 +261,8 @@
         <span>Implantes, enxerto ósseo, canal e atendimento por plano · 4,8 no Google</span>
         <div class="acoes">
           <a class="pill p-sol" href="https://agenda.link/1112" target="_blank" rel="noopener">Agendar consulta</a>
-          <a class="pill p-linha" href="https://wa.me/5573999062002" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
-            Falar no WhatsApp
-          </a>
+          <a class="pill p-linha" href="https://wa.me/5573999062002" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg> Falar no WhatsApp</a>
+          <a class="pill p-linha" href="https://www.instagram.com/oralcentter.tx/" target="_blank" rel="noopener"><svg class="ic ig" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle class="pt" cx="17.4" cy="6.6" r="1.1"/></svg> Instagram</a>
         </div>
       </div>
 
@@ -201,9 +272,9 @@
 
   <section id="tratamentos" aria-labelledby="t-trat">
     <div class="wrap">
-      <div class="intro rv">
-        <h2 id="t-trat">O que a gente faz pelo seu sorriso</h2>
-        <p>Toque em cada tratamento para saber mais. Na dúvida sobre o seu caso, comece pela avaliação.</p>
+      <div class="intro">
+        <h2 id="t-trat" class="pal" aria-label="O que a gente faz pelo seu sorriso"><span class="pw"><span style="--i:0">O</span></span> <span class="pw"><span style="--i:1">que</span></span> <span class="pw"><span style="--i:2">a</span></span> <span class="pw"><span style="--i:3">gente</span></span> <span class="pw"><span style="--i:4">faz</span></span> <span class="pw"><span style="--i:5">pelo</span></span> <span class="pw"><span style="--i:6">seu</span></span> <span class="pw"><span style="--i:7">sorriso</span></span></h2>
+        <p class="rv">Toque em cada tratamento para saber mais. Na dúvida sobre o seu caso, comece pela avaliação.</p>
       </div>
       <ul class="acordeao rv" id="acordeao">
         <li class="aberto"><button aria-expanded="true" aria-controls="a1">Implantes dentários<span class="sinal" aria-hidden="true"></span></button>
@@ -222,23 +293,23 @@
 
   <section class="aval" id="avaliacoes" aria-labelledby="t-aval">
     <div class="wrap">
-      <h2 id="t-aval" class="rv">225 pessoas já contaram como foi</h2>
+      <h2 id="t-aval" class="pal" aria-label="225 pessoas já contaram como foi"><span class="pw"><span style="--i:0">225</span></span> <span class="pw"><span style="--i:1">pessoas</span></span> <span class="pw"><span style="--i:2">já</span></span> <span class="pw"><span style="--i:3">contaram</span></span> <span class="pw"><span style="--i:4">como</span></span> <span class="pw"><span style="--i:5">foi</span></span></h2>
       <div class="nota rv" style="--d:.1s">
         <div class="sorrisos" role="img" aria-label="Nota 4,8 de 5">
-          <svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
-          <svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
-          <svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
-          <svg viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
-          <svg viewBox="0 0 400 400" class="meio"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
+          <svg style="--i:0" viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
+          <svg style="--i:1" viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
+          <svg style="--i:2" viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
+          <svg style="--i:3" viewBox="0 0 400 400"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
+          <svg style="--i:4" viewBox="0 0 400 400" class="meio"><circle cx="200" cy="200" r="200"/><path d="M128 214c22 42 54 62 72 62s50-20 72-62"/></svg>
         </div>
         <span>Nota 4,8 de 5 no Google</span>
       </div>
       <div class="falas">
-        <blockquote class="fala rv">
+        <blockquote class="fala rv"><span class="digitando" aria-hidden="true"><i></i><i></i><i></i></span>
           <p>“Super indico, recepção com um atendimento maravilhoso, Dr Isabela nem se fala, ótima profissional. Fiz meu implante, fiz uma cirurgia de enxerto ósseo e graças a Deus foi tudo bem. Obg Oral Center por devolver meu sorriso.”</p>
           <footer>Irismar <span>· no Google</span></footer>
         </blockquote>
-        <blockquote class="fala b rv" style="--d:.15s">
+        <blockquote class="fala b rv" style="--d:.15s"><span class="digitando" aria-hidden="true"><i></i><i></i><i></i></span>
           <p>“Muito bem recebida, equipe super educadas desde a recepção ao final do atendimento, muito satisfeita.”</p>
           <footer>Ana Beatriz <span>· no Google</span></footer>
         </blockquote>
@@ -249,7 +320,7 @@
 
   <section id="marcar" aria-labelledby="t-marcar">
     <div class="wrap">
-      <h2 id="t-marcar" class="rv" style="margin-bottom:clamp(2.5rem,5vw,4rem)">Marcar é simples</h2>
+      <h2 id="t-marcar" class="pal" style="margin-bottom:clamp(2.5rem,5vw,4rem)" aria-label="Marcar é simples"><span class="pw"><span style="--i:0">Marcar</span></span> <span class="pw"><span style="--i:1">é</span></span> <span class="pw"><span style="--i:2">simples</span></span></h2>
       <ol class="passos">
         <li class="rv"><h3>Escolha o horário</h3><p>Pela <a href="https://agenda.link/1112" target="_blank" rel="noopener">agenda on-line</a> ou mandando um oi no <a href="https://wa.me/5573999062002" target="_blank" rel="noopener">WhatsApp</a>.</p></li>
         <li class="rv" style="--d:.12s"><h3>Venha até a clínica</h3><p>Rua Pedro Álvares Cabral, 340, no Centro de Teixeira de Freitas.</p></li>
@@ -260,13 +331,13 @@
 
   <section class="visita" id="visita" aria-labelledby="t-visita">
     <div class="wrap">
-      <h2 id="t-visita" class="rv">Estamos no Centro</h2>
+      <h2 id="t-visita" class="pal" aria-label="Estamos no Centro"><span class="pw"><span style="--i:0">Estamos</span></span> <span class="pw"><span style="--i:1">no</span></span> <span class="pw"><span style="--i:2">Centro</span></span></h2>
       <div class="visita-grid">
         <div class="info rv">
           <div><small>Endereço</small><p>Rua Pedro Álvares Cabral, 340<br>Centro, Teixeira de Freitas (BA), 45995-085</p></div>
-          <div><small>Telefone e WhatsApp</small><p><a href="https://wa.me/5573999062002" target="_blank" rel="noopener">(73) 99906-2002</a></p></div>
+          <div><small>Telefone e WhatsApp</small><p><a class="canal" href="https://wa.me/5573999062002" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>(73) 99906-2002</a></p></div>
           <div><small>Horário</small><p>Segunda a partir das 8h. Fechado aos domingos.<br>Confirme os outros horários pelo WhatsApp.</p></div>
-          <div><small>Instagram</small><p><a href="https://www.instagram.com/oralcentter.tx/" target="_blank" rel="noopener">@oralcentter.tx</a></p></div>
+          <div><small>Instagram</small><p><a class="canal" href="https://www.instagram.com/oralcentter.tx/" target="_blank" rel="noopener"><svg class="ic ig" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle class="pt" cx="17.4" cy="6.6" r="1.1"/></svg>@oralcentter.tx</a></p></div>
           <span class="selo"><i aria-hidden="true"><b style="background:#E53935"></b><b style="background:#FB8C00"></b><b style="background:#FDD835"></b><b style="background:#43A047"></b><b style="background:#1E88E5"></b><b style="background:#8E24AA"></b></i>Espaço que acolhe a comunidade LGBTQ+</span>
         </div>
         <div class="mapa rv" style="--d:.15s">
@@ -280,10 +351,15 @@
 
 <footer class="rodape">
   <div class="wrap">
-    <span>Oral Centter, Teixeira de Freitas (BA)</span>
+    <span class="redes"><a href="https://www.instagram.com/oralcentter.tx/" target="_blank" rel="noopener" aria-label="Instagram"><svg class="ic ig" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle class="pt" cx="17.4" cy="6.6" r="1.1"/></svg></a><a href="https://wa.me/5573999062002" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg></a>&nbsp; Oral Centter, Teixeira de Freitas (BA)</span>
     <span>Proposta de site por <a href="https://www.instagram.com/verus.solutions/" target="_blank" rel="noopener">Verus Soluções inteligentes</a></span>
   </div>
 </footer>
+
+<div class="flutua" id="flutua">
+  <a class="f-ig" href="https://www.instagram.com/oralcentter.tx/" target="_blank" rel="noopener" aria-label="Instagram da Oral Centter"><svg class="ic ig" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5.2"/><circle cx="12" cy="12" r="4.2"/><circle class="pt" cx="17.4" cy="6.6" r="1.1"/></svg><span class="dica-wa">@oralcentter.tx</span></a>
+  <a class="f-wa" href="https://wa.me/5573999062002" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3 1 2.6 1.1 2.8.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span class="dica-wa">Fale com a gente</span></a>
+</div>
 
 <script>
 (function(){
@@ -345,8 +421,14 @@
     var p = Math.min(Math.max(-r.top/total,0),1);
     if(!reduz) desenha(p);
     barra.classList.toggle('solida', r.bottom < 80);
+    document.getElementById('flutua').classList.toggle('ver', p > .97 || r.bottom < innerHeight);
+    if(!reduz){
+      if(p >= .995 && !pulou){ pulou = true; svgBoca.classList.remove('pulo'); void svgBoca.offsetWidth; svgBoca.classList.add('pulo'); }
+      if(p < .9) pulou = false;
+    }
   }
 
+  var pulou = false, svgBoca = document.getElementById('boca');
   if(reduz){ desenha(1); } else { desenha(0); }
   addEventListener('scroll', function(){ requestAnimationFrame(rolar); }, {passive:true});
   addEventListener('resize', rolar);
@@ -361,11 +443,11 @@
   });
 
   // Entradas ao rolar
-  var els = document.querySelectorAll('.rv');
+  var els = document.querySelectorAll('.rv,h2.pal,.passos li');
   if('IntersectionObserver' in window && !reduz){
-    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } }); }, {threshold:.15});
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ var el=e.target; el.classList.add('on'); io.unobserve(el); if(el.classList.contains('fala')) setTimeout(function(){ el.classList.add('lida'); }, 1300 + (el.classList.contains('b') ? 500 : 0)); } }); }, {threshold:.15});
     els.forEach(function(el){ io.observe(el); });
-  } else { els.forEach(function(el){ el.classList.add('on'); }); }
+  } else { els.forEach(function(el){ el.classList.add('on'); if(el.classList.contains('fala')) el.classList.add('lida'); }); }
 })();
 </script>
 </body>
